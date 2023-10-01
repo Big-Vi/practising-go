@@ -65,4 +65,14 @@ func main() {
 	slice3 = append(slice3, 7)
 	fmt.Println("slice3:", slice3, "cap:", cap(slice3))
 	fmt.Println("slicegrow:", slicegrow, "cap:", cap(slicegrow))
+
+	originalSlice := []int{1, 2, 3, 4, 5}
+
+    // Create a new slice with the same underlying array but length and capacity set to 0
+    newSlice := originalSlice[:0:0]
+
+    fmt.Println("Original Slice:", originalSlice)
+    fmt.Println("New Slice:", newSlice)
+    fmt.Println("Length of New Slice:", len(newSlice))
+    fmt.Println("Capacity of New Slice:", cap(newSlice))
 }

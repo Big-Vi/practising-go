@@ -93,6 +93,21 @@ func printValue[T ~int64](t T) {
 	fmt.Println("Value: ", t)
 }
 
+type Stack[T any] []T
+
+func (s *Stack[T]) Push(value T) {
+    *s = append(*s, value)
+}
+
+func (s *Stack[T]) Pop() T {
+    if len(*s) == 0 {
+        panic("stack is empty")
+    }
+    value := (*s)[len(*s)-1]
+    *s = (*s)[:len(*s)-1]
+    return value
+}
+
 func main() {
 	dinner := Dinner{Name: "Fish curry", Price: 40}
 	Value1 := GetString(dinner)
@@ -130,4 +145,17 @@ func main() {
 	var myValue CustomType
 	myValue = 4000
 	printValue(myValue)
+
+	// Generic data structure
+    stack := Stack[int]{}
+    stack.Push(10)
+    stack.Push(20)
+    fmt.Println(stack.Pop()) // Outputs: 20
+	fmt.Println(stack)
+
+	stack2 := Stack[string]{}
+    stack2.Push("string1")
+    stack2.Push("string2")
+    fmt.Println(stack2.Pop()) // Outputs: string2
+	fmt.Println(stack2)
 }
